@@ -1,32 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import '../data/Colors.dart' as UsedColors;
 import 'package:russian_quiz_app/data/Quotes.dart';
 
-class MainOption extends StatelessWidget {
+class VocabField extends StatefulWidget {
   final Image? backgroundImage;
   final String text;
-  final String root;
+  final String translation;
+  bool showingRussian;
+  VocabField(this.text, this.translation,
+      {super.key, this.backgroundImage, this.showingRussian = true});
 
-  const MainOption(this.text, this.root, {super.key, this.backgroundImage});
+  @override
+  State<VocabField> createState() => _VocabFieldState();
+}
 
+class _VocabFieldState extends State<VocabField> {
+  void switchShowing() => setState(() {
+        widget.showingRussian = !widget.showingRussian;
+      });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / (options.length + 3),
+      height: MediaQuery.of(context).size.height / 10,
       child: FractionallySizedBox(
         widthFactor: 0.85,
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(context, '/' + root),
+          onTap: () {
+            setState(() {
+              switchShowing();
+            });
+          },
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 12),
             margin: const EdgeInsets.symmetric(vertical: 6),
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: UsedColors.foregroundBG,
               borderRadius: const BorderRadius.all(Radius.circular(20)),
-              image: backgroundImage != null
+              image: widget.backgroundImage != null
                   ? DecorationImage(
-                      image: backgroundImage!.image,
+                      image: widget.backgroundImage!.image,
                       fit: BoxFit.cover,
                     )
                   : null,
@@ -34,7 +46,7 @@ class MainOption extends StatelessWidget {
             alignment: Alignment.center,
             child: FittedBox(
               child: Text(
-                text,
+                widget.showingRussian ? widget.text : widget.translation,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),

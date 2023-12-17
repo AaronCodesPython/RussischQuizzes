@@ -1,10 +1,4 @@
-import 'package:russian_quiz_app/widgets/main_options.dart';
-
-final List<List<String>> options = [
-  ["Vokabeln", "Vocab", ""],
-  ["Quizzes", "Quiz", ""],
-  ["Media", "Media", ""],
-];
+import 'package:russian_quiz_app/widgets/Vocab_Field.dart';
 
 Map<String, String> quotesDictionary = {
   "They say: sufferings are misfortunes, said Pierre. But if at once this minute, I was asked, would I remain what I was before I was taken prisoner, or go through it all again, I should say, for God's sake let me rather be a prisoner and eat horseflesh again. We imagine that as soon as we are torn out of our habitual path all is over, but it is only the beginning of something new and good. As long as there is life, there is happiness. There is a great deal, a great deal before us. -Leo Tolstoy, War and Peace":

@@ -5,12 +5,14 @@ import 'package:russian_quiz_app/screens/HomeScreen.dart';
 import 'package:russian_quiz_app/screens/MediaScreen.dart';
 import 'package:russian_quiz_app/screens/QuizScreen.dart';
 import 'package:russian_quiz_app/screens/VocabScreen.dart';
-
 import 'functions/randomQuote.dart';
 
-void main(List<String> args) {
+// TODO: Only safe data over multiple runs if not run in Browser!
+void main(List<String> args) async {
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (_) => SelectedIndex())],
+    providers: [
+      ChangeNotifierProvider(create: (_) => SelectedIndex()),
+    ],
     child: const App(),
   ));
 }
