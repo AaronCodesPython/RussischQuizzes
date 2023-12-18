@@ -1,1 +1,0 @@
-Hallo,Привет;Danke,Спасибо;Bitte,Пожалуйста;Ja,Да;Nein,Нет;Guten Morgen,Доброе утро;Gute Nacht,Спокойной ночи;Wie geht's?,Как дела?;Entschuldigung,Извините;Hilfe,Помощь;Wasser,Вода;Essen,Еда;Freund,Друг;Familie,Семья;Liebe,Любовь;Glück,Счастье;Haus,Дом;Schule,Школа;Arbeit,Работа;Stadt,Город

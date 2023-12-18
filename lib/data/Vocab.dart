@@ -1,16 +1,19 @@
-import 'dart:io';
-import 'package:path/path.dart' as p;
-import 'package:flutter/services.dart' show rootBundle;
+class Vocab {
+  final String russian;
+  final String translation;
+  const Vocab({required this.russian, required this.translation});
 
-Future<Map<String, String>> getMap() async {
-  print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-  Map<String, String> output = {};
-  String fileContent = await rootBundle.loadString('assets/Vocab.txt');
-  fileContent.split(";").forEach((element) {
-    List<String> s = element.split(",");
-    output[s[0]] = s[1];
-    print(element);
-  });
-  print(output.toString());
-  return output;
+  Map<String, dynamic> toMap() {
+    return {
+      'russian': russian,
+      'translation': translation,
+    };
+  }
+
+  // Implement toString to make it easier to see information about
+  // each dog when using the print statement.
+  @override
+  String toString() {
+    return 'Dog{russian: $russian, translation: $translation}';
+  }
 }

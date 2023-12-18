@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:russian_quiz_app/widgets/Vocab_Field.dart';
 import '../data/Colors.dart' as UsedColors;
+import '../data/Vocab.dart';
 import '../widgets/MainDrawer.dart';
-import '../data/Vocab.dart' as Vocab;
+import '../database/manage_db.dart' as DataBaseManager;
 
 class VocabScreen extends StatefulWidget {
   const VocabScreen({super.key});
@@ -39,11 +40,11 @@ class _VocabScreenState extends State<VocabScreen> {
                 TextField(
                   controller: controller1,
                   autofocus: true,
-                  decoration: InputDecoration(hintText: 'Vokabel'),
+                  decoration: const InputDecoration(hintText: 'Vokabel'),
                 ),
                 TextField(
                   controller: controller2,
-                  decoration: InputDecoration(hintText: 'Übersetzung'),
+                  decoration: const InputDecoration(hintText: 'Übersetzung'),
                 )
               ],
             ),
@@ -53,47 +54,54 @@ class _VocabScreenState extends State<VocabScreen> {
                     Navigator.of(context)
                         .pop([controller1.text, controller2.text]);
                   },
-                  child: Text("BESTÄTIGEN"))
+                  child: const Text("BESTÄTIGEN"))
             ],
           );
         },
       );
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map<String, String>>(
-        future: Vocab.getMap(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-                backgroundColor: UsedColors.mainBG,
-                appBar: AppBar(
-                  actions: [
-                    IconButton(
-                        onPressed: () async {
-                          print(Vocab.getMap().toString());
-                          List<String> data = await openDialog() ?? [];
-                          setState(() {
-                            //TODO:write to file
-                          });
-                        },
-                        icon: const Icon(Icons.add))
-                  ],
-                  title: const Text("widget.title"),
-                  backgroundColor: UsedColors.foregroundBG,
-                ),
-                drawer: const MainDrawer(),
-                body: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: snapshot.data!.entries
-                            .map((entry) => VocabField(entry.key, entry.value))
-                            .toList()),
-                  ),
-                ));
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        });
+    return FutureBuilder(
+      future: DataBaseManager.getAllVocabs(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: UsedColors.mainBG,
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                    onPressed: () async {
+                      List<String> data = await openDialog() ?? [];
+                      DataBaseManager.insertVocab(Vocab(
+                          russian: controller1.text,
+                          translation: controller2.text));
+                      controller1.clear();
+                      controller2.clear();
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.add))
+              ],
+              title: const Text("widget.title"),
+              backgroundColor: UsedColors.foregroundBG,
+            ),
+            drawer: const MainDrawer(),
+            body: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: snapshot.data!
+                        .map((entry) =>
+                            VocabField(entry.russian, entry.translation))
+                        .toList()),
+              ),
+            ),
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
   }
 }
