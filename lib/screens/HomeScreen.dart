@@ -20,7 +20,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: UsedColors.mainBG,
       appBar: AppBar(
-        title: Text("widget.title"),
         backgroundColor: UsedColors.foregroundBG,
       ),
       drawer: const MainDrawer(),
@@ -28,6 +27,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Expanded(
             child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
                 border: Border(
                     top: BorderSide(width: 12, color: UsedColors.foregroundBG)),
@@ -40,6 +40,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+               padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                   border: Border(
                       top: BorderSide(

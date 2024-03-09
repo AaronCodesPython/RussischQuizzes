@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:russian_quiz_app/data/Vocab.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../data/Vocab_Map.dart';
+import '../data/Initial_Vocab.dart';
 
 Database? globalDatabase;
 

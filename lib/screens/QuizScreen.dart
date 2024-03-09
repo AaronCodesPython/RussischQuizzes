@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:russian_quiz_app/data/Quizzes_Map.dart';
+import 'package:russian_quiz_app/widgets/Quiz_Grid.dart';
 
 import '../widgets/MainDrawer.dart';
 // Ensure correct import path
@@ -14,7 +16,7 @@ class QuizScreen extends StatelessWidget {
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text("QUIZ")]),
+            children: [Expanded(child: QuizGrid(q1))]),
       ),
     );
   }
