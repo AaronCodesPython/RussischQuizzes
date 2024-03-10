@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 
@@ -23,7 +25,7 @@ class Grid_Square extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-          margin: EdgeInsets.all(2),
+          margin: const EdgeInsets.all(2),
           color: get_bg_color(),
           child: Center(
             child: Text(
@@ -37,6 +39,6 @@ class Grid_Square extends StatelessWidget{
       );
   }
 
-
+  
 }
 

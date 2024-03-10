@@ -16,7 +16,7 @@ class QuizScreen extends StatelessWidget {
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Expanded(child: QuizGrid(q1))]),
+            children: [Expanded(child: QuizGrid(q1, q1_l))]),
       ),
     );
   }
