@@ -1,29 +1,47 @@
-
 import 'package:flutter/material.dart';
-class QuizGrid extends StatelessWidget {
+import 'package:russian_quiz_app/Grid_Square.dart';
+class QuizGrid extends StatefulWidget {
   List<List<String>> quiz_data;
-  List<Container> quiz_texts = [];
-  
+
   QuizGrid(this.quiz_data, {super.key});
 
   @override
-  Widget build(BuildContext context) {
-    List<Widget> quizTexts = quiz_data.expand((row) => row.map((char) =>  Container(
-      alignment: Alignment.center,
-      child: TextButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.black),padding: MaterialStateProperty.all(const EdgeInsets.all(0))),
-        child: Text(char,style: const TextStyle(fontSize: 10, color: Colors.white)),
-        onPressed: (){}, // Adjust font size as needed
-      ),
-    )
-)).toList();
+  State<QuizGrid> createState() => _QuizGridState(quiz_data);
+}
 
-    return GridView.count(
-      crossAxisCount: quiz_data[0].length,
-      mainAxisSpacing: 0,
-      crossAxisSpacing: 0,
-      children: quizTexts,
-      
+class _QuizGridState extends State<QuizGrid> {
+  List<List<String>> quiz_data;
+  _QuizGridState(this.quiz_data);
+  List<List<bool>> clickedStatus = [];
+  List<List<int>> correctIndices = [];
+  @override
+  void initState() {
+    
+    super.initState();
+    // Initialize clickedStatus with default values
+    clickedStatus = List.generate(widget.quiz_data.length,
+        (index) => List<bool>.filled(widget.quiz_data[index].length, false));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: widget.quiz_data.length,
+      ),
+      itemCount: widget.quiz_data.length*widget.quiz_data[0].length,
+      itemBuilder: (BuildContext context, int index) {
+        int index_n = index~/widget.quiz_data [0].length;
+        int index_m = index%widget.quiz_data.length;
+        return GestureDetector(child: Grid_Square(index: index, char: widget.quiz_data[index_n][index_m], clicked: clickedStatus[index_n][index_m], solved: false), onTap: () {
+          setState(() {
+            clickedStatus[index_n][index_m] = !clickedStatus[index_n][index_m];
+            correctIndices.add([index_n,index_m]);
+            print(correctIndices);
+          });
+        },);
+      },
     );
   }
 }
