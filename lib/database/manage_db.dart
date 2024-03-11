@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:russian_quiz_app/data/Vocab.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';

@@ -67,6 +67,9 @@ class _QuizGridState extends State<QuizGrid> {
         }
       }
     }
+    if(words.length == 0){
+      return false;
+    }
     for(List<List<int>> word in words){
       for(List<int> char in word){
         if(!clickedStatus[char[0]][char[1]]){
