@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:russian_quiz_app/Grid_Square.dart';
 class QuizGrid extends StatefulWidget {
   List<List<String>> quiz_data;
-  Set<List<int>> quiz_solution;
+  List<List<List<int>>> quiz_solution;
   QuizGrid(this.quiz_data, this.quiz_solution,{super.key});
 
   @override
@@ -13,7 +13,7 @@ class QuizGrid extends StatefulWidget {
 
 class _QuizGridState extends State<QuizGrid> {
   List<List<String>> quiz_data;
-  Set<List<int>> quiz_solution;
+  List<List<List<int>>> quiz_solution;
   _QuizGridState(this.quiz_data, this.quiz_solution);
   List<List<bool>> clickedStatus = [];
   List<List<bool>> solvedStatus = [];
@@ -58,18 +58,31 @@ class _QuizGridState extends State<QuizGrid> {
   }
 
   bool is_solved(int n, int m){
-    if(n+1 < qdl && quiz_solution.contains([n+1,m])){
-      is_solved(n+1, m);
+    // find wich words cell is part of 
+    List<List<List<int>>> words= [];
+    for(List<List<int>> e in quiz_solution){
+      for (List<int> innerList in e) {
+        if (innerList[0] == n && innerList[1] == m) {
+          words.add(e);
+        }
+      }
     }
-    if(n-1 >= 0  && quiz_solution.contains([n-1,m])){
-      is_solved(n-1, m);
+    for(List<List<int>> word in words){
+      for(List<int> char in word){
+        if(!clickedStatus[char[0]][char[1]]){
+          return false;
+        }
+      }
     }
-    if(m+1 < qdfl  && quiz_solution.contains([n,m+1])){
-      is_solved(n, m+1);
+
+    for(List<List<int>> word in words){
+      for(List<int> char in word){
+        setState(() {
+          solvedStatus[char[0]][char[1]] = true;
+        });
+        
+      }
     }
-    if(m-1 >= 0  && quiz_solution.contains([n,m-1])){
-      is_solved(n, m-1);
-    }
-    return false;
+    return true;
   }
 }
