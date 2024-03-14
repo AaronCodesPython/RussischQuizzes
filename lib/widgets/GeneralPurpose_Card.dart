@@ -50,17 +50,11 @@ class GP_Card extends StatelessWidget {
                     style: TextStyle(color:UsedColors.textColor),
                   ),
                   // Add some spacing between the title and the subtitle
-                  Container(height: 5),
-                  // Add a subtitle widget
-                  Text(
-                    "Sub title",
-                    style: TextStyle(color:UsedColors.textColor),
-                  ),
-                  // Add some spacing between the subtitle and the text
                   Container(height: 10),
+                  
                   // Add a text widget to display some text
                   Text(
-                    subheading_text,
+                    'Von $subheading_text',
                     maxLines: 2,
                     style: TextStyle(color:UsedColors.textColor),
                   ),

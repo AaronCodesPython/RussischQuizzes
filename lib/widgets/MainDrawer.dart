@@ -70,7 +70,7 @@ class MainDrawer extends StatelessWidget {
               leading: const Icon(Icons.question_mark),
               onTap: () {
                 context.read<SelectedIndex>().change(2);
-                Navigator.pushReplacementNamed(context, "/Quiz");
+                Navigator.pushReplacementNamed(context,'/Media', arguments:['Verschiedene Quizze',1]);
               },
             ),
           ),
@@ -83,7 +83,7 @@ class MainDrawer extends StatelessWidget {
               leading: const Icon(Icons.tv),
               onTap: () {
                 context.read<SelectedIndex>().change(3);
-                Navigator.pushReplacementNamed(context, "/Media");
+                Navigator.pushReplacementNamed(context, "/Media", arguments: ['Gesammelte Präsentationen',0]);
               },
             ),
           ),

@@ -1,28 +1,32 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:russian_quiz_app/widgets/MainDrawer.dart';
-import 'package:russian_quiz_app/widgets/Vocab_Field.dart'; // Ensure correct import path
-import '../data/Quotes.dart';
+// Ensure correct import path
 import '../data/Colors.dart' as UsedColors;
-import '../functions/randomQuote.dart';
 
 //switch to burger Menu
 //Column(children: options.map((o) => MainOption(o[0], o[1])).toList()),
 class HomeScreen extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<String> quote;
   HomeScreen(this.quote);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const MainDrawer(),
       backgroundColor: UsedColors.mainBG,
       appBar: AppBar(
         backgroundColor: UsedColors.foregroundBG,
+        leading: IconButton(
+          icon: const Icon(Icons.list, color:Colors.white),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(), 
+        ),
       ),
-      drawer: const MainDrawer(),
+      
+      
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Expanded(

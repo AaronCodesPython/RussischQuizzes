@@ -6,6 +6,7 @@ import '../widgets/MainDrawer.dart';
 import '../database/manage_db.dart' as DataBaseManager;
 
 class VocabScreen extends StatefulWidget {
+  
   const VocabScreen({super.key});
 
   @override
@@ -13,6 +14,7 @@ class VocabScreen extends StatefulWidget {
 }
 
 class _VocabScreenState extends State<VocabScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late TextEditingController controller1;
   late TextEditingController controller2;
   @override
@@ -66,9 +68,14 @@ class _VocabScreenState extends State<VocabScreen> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
+            key: _scaffoldKey,
             backgroundColor: UsedColors.mainBG,
             appBar: AppBar(
               actions: [
+                IconButton(
+          icon: const Icon(Icons.list, color:Colors.white),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(), 
+        ),
                 IconButton(
                     onPressed: () async {
                       List<String> data = await openDialog() ?? [];
