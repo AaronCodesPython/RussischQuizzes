@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../data/Colors.dart' as UsedColors;
-import 'package:russian_quiz_app/data/Quotes.dart';
 
 class VocabField extends StatefulWidget {
   final Image? backgroundImage;

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import '../data/Colors.dart' as UsedColors;
 class GP_Card extends StatelessWidget {
-  String text;
-  
-  GP_Card(this.text);  
+  String heading_text;
+  String asset_name;
+  String subheading_text;
+  GP_Card(this.heading_text, this.subheading_text, this.asset_name);  
 
   @override
   Widget build(BuildContext context) {
     
     return Card(
+      
       color: UsedColors.foregroundBG,
   // Define the shape of the card
   shape: RoundedRectangleBorder(
@@ -27,8 +29,8 @@ class GP_Card extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Add an image widget to display an image
-            Image.network(
-              "https://cdn.pixabay.com/photo/2020/06/09/06/56/putin-5277284_640.jpg",
+            Image.asset(
+              asset_name,
               height: 100,
               width: 100,
               fit: BoxFit.cover,
@@ -44,7 +46,7 @@ class GP_Card extends StatelessWidget {
                   Container(height: 5),
                   // Add a title widget
                   Text(
-                    text,
+                    heading_text,
                     style: TextStyle(color:UsedColors.textColor),
                   ),
                   // Add some spacing between the title and the subtitle
@@ -58,7 +60,7 @@ class GP_Card extends StatelessWidget {
                   Container(height: 10),
                   // Add a text widget to display some text
                   Text(
-                    "MyStringsSample.card_text",
+                    subheading_text,
                     maxLines: 2,
                     style: TextStyle(color:UsedColors.textColor),
                   ),
@@ -71,5 +73,8 @@ class GP_Card extends StatelessWidget {
     ],
   ),
 );
+  }
+   void _openDocument(String _documentPath) async {
+    
   }
 }

@@ -81,7 +81,7 @@ class _VocabScreenState extends State<VocabScreen> {
                     },
                     icon: const Icon(Icons.add))
               ],
-              title: const Text("widget.title"),
+              title: const Text("Deine Vokabeln"),
               backgroundColor: UsedColors.foregroundBG,
             ),
             drawer: const MainDrawer(),

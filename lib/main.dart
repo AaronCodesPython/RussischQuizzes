@@ -28,7 +28,8 @@ class App extends StatelessWidget {
         '/': (context) => HomeScreen(randomQuote()),
         '/Vocab': (context) => VocabScreen(),
         '/Quiz': (context) => QuizScreen(),
-        '/Media': (context) => MediaScreen()
+        '/Media': (context) => MediaScreen(),
+        
       },
     );
   }
