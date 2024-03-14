@@ -30,8 +30,14 @@ class MediaScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: AllData.AllData[AllDataIndex].map((text) => GestureDetector(
                 onTap: () {
-                  Uri url = Uri.parse(text[2]);
+                  if(text.length ==4){
+                    Uri url = Uri.parse(text[2]);
                   _launchUrl(url);
+                  }
+                  else{
+                    Navigator.of(context).pushNamed('/Quiz', arguments: text[4]);
+                  }
+                  
                 },
                 child: GP_Card(text[0], text[1], "assets/${text[3]}"))).toList()),
         ),

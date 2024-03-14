@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:russian_quiz_app/data/Quizzes_Map.dart';
+import 'package:russian_quiz_app/data/Quizzes_Map.dart' as QuizMap;
 import 'package:russian_quiz_app/widgets/Quiz_Grid.dart';
 import '../data/Colors.dart' as UsedColors;
 import '../widgets/MainDrawer.dart';
@@ -10,6 +10,7 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final PasseData = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(backgroundColor: UsedColors.foregroundBG,),
@@ -17,7 +18,7 @@ class QuizScreen extends StatelessWidget {
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Expanded(child: QuizGrid(q1, q1_l))]),
+            children: [Expanded(child: QuizGrid(QuizMap.quizzes[PasseData], QuizMap.quizzes_l[PasseData]))]),
       ),
     );
   }

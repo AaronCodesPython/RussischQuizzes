@@ -24,6 +24,13 @@ class HomeScreen extends StatelessWidget {
           icon: const Icon(Icons.list, color:Colors.white),
           onPressed: () => _scaffoldKey.currentState?.openDrawer(), 
         ),
+        flexibleSpace: const FlexibleSpaceBar(
+          centerTitle: true,
+          title: Text(
+            "Willkommen bei: Russisch Lernen WG21!",
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+        ),
       ),
       
       

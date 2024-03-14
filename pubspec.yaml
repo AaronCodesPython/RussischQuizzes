@@ -76,6 +76,11 @@ flutter:
     - assets/krieg.png
     - assets/boris.png
     - assets/gorbi.png
+    - assets/school.png
+    - assets/person.png
+    - assets/cat.png
+    - assets/pushkin.png
+    - assets/Katjuscha.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
